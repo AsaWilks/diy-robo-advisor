@@ -5,7 +5,6 @@
 *.lst
 *.log
 *.sas7bdat
-*.csv
 *.xlsx
 *.xls
 .idea.*
