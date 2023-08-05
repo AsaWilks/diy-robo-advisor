@@ -4,7 +4,7 @@
 
 library(stringr)
 library(tidyverse)
-setwd("C:/Users/awilks/Documents/diy_robo_advisor")
+setwd("C:/Users/awilks/Documents/git_repos/diy-robo-advisor")
 
 
 convert_currency <- function(currency) {
@@ -19,7 +19,7 @@ convert_currency <- function(currency) {
 # file names
 ##
 
-posit_sum_fn <- "dummy_Joint_Tenant-Positions-2023-07-22-115104.csv"
+posit_sum_fn <- "Joint_Tenant-Positions-2023-08-05-101354.csv"
 tgt_alloc_fn <- "target_allocation.csv"
 asset_list_fn <- "asset_list.csv"
 
@@ -27,7 +27,7 @@ asset_list_fn <- "asset_list.csv"
 # read data
 ##
 
-posit_sum <- read_csv(file.path("./data", posit_sum_fn), skip = 3)
+posit_sum <- read_csv(file.path("./data", posit_sum_fn), skip = 2)
 tgt_alloc <- read_csv(file.path(".", tgt_alloc_fn))
 asset_list <- read_csv(file.path(".", asset_list_fn))
 
@@ -52,7 +52,7 @@ balance_comparison <- actual_alloc_symbols %>%
 # build_buy_orders.R
 ##
 
-new_investment <- 5000
+new_investment <- 1870
 increment_onepct <- new_investment / 100
 
 # initialize updating variables at current values
@@ -74,12 +74,20 @@ for(i in 1:100){
          new_percent = new_value / sum(new_value) * 100,
          new_imbalance = target_percent - new_percent)
 }
-
+##
 # buy orders
-buy_orders <- balance_update %>%
+##
+
+# one row for every asset
+buy_orders_allassets <- balance_update %>%
   mutate(buy_order = new_value - actual_value) %>%
   left_join(actual_alloc_symbols, by = 'asset_class_detail') %>%
-  select(buy_order, symbol, asset_class_detail)
+  select(buy_order, symbol, asset_class_detail, expense_ratio, class_priority)
+
+# subset by highest priorty wtihin asset class
+buy_orders <- buy_orders_allassets %>% 
+  group_by(asset_class_detail) %>%
+    slice_min(class_priority, n = 1)
 
 # print total invested
 print(paste("Total New Investment:",
