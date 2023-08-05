@@ -1,30 +1,30 @@
-﻿symbol,asset_class_detail,asset_class_broad,description
-VTI,US Total Stock Market,US Stocks,
-SCHB,US Total Stock Market,US Stocks,
-ITOT,US Total Stock Market,US Stocks,
-VTV,US Large Cap Value,US Stocks,
-SCHV,US Large Cap Value,US Stocks,
-SPYV,US Large Cap Value,US Stocks,
-IVE,US Large Cap Value,US Stocks,
-VOE,US Mid Cap Value,US Stocks,
-IWS,US Mid Cap Value,US Stocks,
-IJJ,US Mid Cap Value,US Stocks,
-VBR,US Small Cap Value,US Stocks,
-IWN,US Small Cap Value,US Stocks,
-SLYV,US Small Cap Value,US Stocks,
-VEA,Developed Stock Market,International Stocks,
-SCHF,Developed Stock Market,International Stocks,
-IEFA,Developed Stock Market,International Stocks,
-VWO,Emerging Stock Market,International Stocks,
-IEMG,Emerging Stock Market,International Stocks,
-SPEM,Emerging Stock Market,International Stocks,
-STIP,Inflation Protected Bonds,US Bonds,
-VTIP,Inflation Protected Bonds,US Bonds,
-AGG,High Quality Bonds,US Bonds,
-MUB,Muni Bonds,US Bonds,
-CMF,Muni Bonds,US Bonds,
-TFI,Muni Bonds,US Bonds,
-BNDX,Developed Bond Market,International Bonds,
-EMB,Emerging Bond Market,International Bonds,
-VWOB,Emerging Bond Market,International Bonds,
-PCY,Emerging Bond Market,International Bonds,
+﻿symbol,asset_class_detail,asset_class_broad,description,expense_ratio,class_priority
+VTI,US Total Stock Market,US Stocks,,0.03,1
+SCHB,US Total Stock Market,US Stocks,,0.03,2
+ITOT,US Total Stock Market,US Stocks,,0.03,3
+VTV,US Large Cap Value,US Stocks,,0.04,1
+SCHV,US Large Cap Value,US Stocks,,0.04,2
+SPYV,US Large Cap Value,US Stocks,,0.04,3
+IVE,US Large Cap Value,US Stocks,,0.18,4
+VOE,US Mid Cap Value,US Stocks,,0.05,1
+IWS,US Mid Cap Value,US Stocks,,0.23,2
+IJJ,US Mid Cap Value,US Stocks,,0.18,3
+VBR,US Small Cap Value,US Stocks,,0.07,1
+IWN,US Small Cap Value,US Stocks,,0.24,2
+SLYV,US Small Cap Value,US Stocks,,0.15,3
+VEA,Developed Stock Market,International Stocks,,0.05,1
+SCHF,Developed Stock Market,International Stocks,,0.06,2
+IEFA,Developed Stock Market,International Stocks,,0.07,3
+VWO,Emerging Stock Market,International Stocks,,0.08,1
+IEMG,Emerging Stock Market,International Stocks,,0.09,2
+SPEM,Emerging Stock Market,International Stocks,,0.07,3
+STIP,Inflation Protected Bonds,US Bonds,,0.03,1
+VTIP,Inflation Protected Bonds,US Bonds,,0.04,2
+AGG,High Quality Bonds,US Bonds,,0.03,1
+MUB,Muni Bonds,US Bonds,,0.07,2
+CMF,Muni Bonds,US Bonds,,0.25,1
+TFI,Muni Bonds,US Bonds,,0.23,3
+BNDX,Developed Bond Market,International Bonds,,0.07,1
+EMB,Emerging Bond Market,International Bonds,,0.39,2
+VWOB,Emerging Bond Market,International Bonds,,0.2,1
+PCY,Emerging Bond Market,International Bonds,,0.5,3
