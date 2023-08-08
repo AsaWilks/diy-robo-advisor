@@ -19,7 +19,7 @@ convert_currency <- function(currency) {
 # file names
 ##
 
-posit_sum_fn <- "Joint_Tenant-Positions-2023-08-05-101354.csv"
+posit_sum_fn <- "Joint_Tenant-Positions-2023-08-08-121903.csv"
 tgt_alloc_fn <- "target_allocation.csv"
 asset_list_fn <- "asset_list.csv"
 
@@ -27,7 +27,7 @@ asset_list_fn <- "asset_list.csv"
 # read data
 ##
 
-posit_sum <- read_csv(file.path("./data", posit_sum_fn), skip = 2)
+posit_sum <- read_csv(file.path("./data", posit_sum_fn), skip = 3)
 tgt_alloc <- read_csv(file.path(".", tgt_alloc_fn))
 asset_list <- read_csv(file.path(".", asset_list_fn))
 
@@ -52,7 +52,7 @@ balance_comparison <- actual_alloc_symbols %>%
 # build_buy_orders.R
 ##
 
-new_investment <- 1870
+new_investment <- 2750
 increment_onepct <- new_investment / 100
 
 # initialize updating variables at current values
