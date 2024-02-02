@@ -19,7 +19,7 @@ convert_currency <- function(currency) {
 # file names
 ##
 
-posit_sum_fn <- "Joint_Tenant-Positions-2023-08-08-121903.csv"
+posit_sum_fn <- "Joint_Tenant-Positions-2024-02-02-113935.csv"
 tgt_alloc_fn <- "target_allocation.csv"
 asset_list_fn <- "asset_list.csv"
 
@@ -27,7 +27,7 @@ asset_list_fn <- "asset_list.csv"
 # read data
 ##
 
-posit_sum <- read_csv(file.path("./data", posit_sum_fn), skip = 3)
+posit_sum <- read_csv(file.path("./data", posit_sum_fn), skip = 2)
 tgt_alloc <- read_csv(file.path(".", tgt_alloc_fn))
 asset_list <- read_csv(file.path(".", asset_list_fn))
 
@@ -39,11 +39,11 @@ actual_alloc_symbols <- posit_sum %>%
   mutate(market_value = convert_currency(`Market Value`)) %>%
   rename(symbol = Symbol) %>%
   filter(!`Security Type` %in% c('Cash and Money Market', '--')) %>%
-  left_join(asset_list, by = 'symbol') 
+  full_join(asset_list, by = 'symbol') 
 
 balance_comparison <- actual_alloc_symbols %>%
   group_by(asset_class_detail) %>%
-  summarize(actual_value = sum(market_value)) %>%
+  summarize(actual_value = sum(market_value, na.rm = TRUE)) %>%
   mutate(actual_percent = actual_value / sum(actual_value) * 100) %>%
   left_join(tgt_alloc, by = 'asset_class_detail') %>%
   mutate(imbalance = target_percent - actual_percent)
@@ -52,7 +52,7 @@ balance_comparison <- actual_alloc_symbols %>%
 # build_buy_orders.R
 ##
 
-new_investment <- 2750
+new_investment <- 1587
 increment_onepct <- new_investment / 100
 
 # initialize updating variables at current values
