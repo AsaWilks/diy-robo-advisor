@@ -19,7 +19,7 @@ convert_currency <- function(currency) {
 # file names
 ##
 
-posit_sum_fn <- "Joint_Tenant-Positions-2024-02-02-113935.csv"
+posit_sum_fn <- "Joint_Tenant-Positions-2024-07-10-124320.csv"
 tgt_alloc_fn <- "target_allocation.csv"
 asset_list_fn <- "asset_list.csv"
 
@@ -36,7 +36,7 @@ asset_list <- read_csv(file.path(".", asset_list_fn))
 ##
 
 actual_alloc_symbols <- posit_sum %>%
-  mutate(market_value = convert_currency(`Market Value`)) %>%
+  mutate(market_value = convert_currency(`Mkt Val (Market Value)`)) %>%
   rename(symbol = Symbol) %>%
   filter(!`Security Type` %in% c('Cash and Money Market', '--')) %>%
   full_join(asset_list, by = 'symbol') 
@@ -52,7 +52,7 @@ balance_comparison <- actual_alloc_symbols %>%
 # build_buy_orders.R
 ##
 
-new_investment <- 1587
+new_investment <- 1128
 increment_onepct <- new_investment / 100
 
 # initialize updating variables at current values
