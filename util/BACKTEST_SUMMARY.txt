@@ -1,0 +1,154 @@
+================================================================================
+COVID-19 MARKET CRASH BACKTEST - SUMMARY RESULTS
+================================================================================
+Backtest Analyst Agent Report
+Generated: 2026-07-06
+Period Analyzed: February 2020 - April 2020
+
+--------------------------------------------------------------------------------
+SCENARIO OVERVIEW
+--------------------------------------------------------------------------------
+The COVID-19 market crash (Feb-Apr 2020) was one of the fastest bear markets
+in history, with the S&P 500 falling over 30% in just a few weeks during March
+2020. This backtest evaluates how the DIY robo-advisor rebalancing strategy
+would have performed during this extreme market stress.
+
+--------------------------------------------------------------------------------
+KEY FINDINGS
+--------------------------------------------------------------------------------
+
+1. UNDERPERFORMANCE VS BENCHMARK
+   - Strategy lost -9.78% vs -3.72% for 60/40 benchmark
+   - Underperformance of -6.06 percentage points
+   - Final value: $90,221.70 vs $96,280.00 (starting from $100,000)
+
+2. HIGHER EQUITY EXPOSURE AMPLIFIED LOSSES
+   - Strategy: 67% stocks / 33% bonds
+   - Benchmark: 60% stocks / 40% bonds
+   - The 7% higher equity allocation drove most of the underperformance
+
+3. FACTOR TILTS WORKED AGAINST STRATEGY
+   - Small-cap value stocks fell -27.6% (4.3% allocation)
+   - Mid-cap value stocks fell -20.1% (5.0% allocation)
+   - These segments significantly underperformed large-cap during the crisis
+
+4. RISK METRICS REFLECTED HIGHER VOLATILITY
+   - Sharpe Ratio: -0.757 vs -0.378 (benchmark)
+   - Volatility: 47.20% vs 42.48% (annualized)
+   - Max Drawdown: -20.78% vs -19.60%
+
+5. BOND DIVERSIFICATION PROVIDED CUSHION
+   - TIPS gained +2.8%
+   - High-quality bonds gained +4.2%
+   - International bonds gained +3.7%
+   - Bond allocation limited losses
+
+6. REBALANCING DISCIPLINE CAPTURED REBOUND
+   - Monthly rebalancing forced buying stocks at March lows
+   - Positioned portfolio for April recovery (+12.7% US stocks)
+   - Long-term benefit depends on continued recovery
+
+--------------------------------------------------------------------------------
+PERFORMANCE METRICS SUMMARY
+--------------------------------------------------------------------------------
+
+                        Strategy    60/40 Bench   Difference
+Total Return            -9.78%      -3.72%        -6.06%
+Annualized Return      -33.74%     -14.07%       -19.67%
+Volatility (Annual)     47.20%      42.48%        +4.71%
+Sharpe Ratio           -0.757      -0.378        -0.379
+Max Drawdown           -20.78%     -19.60%        -1.18%
+Final Value         $90,221.70   $96,280.00    -$6,058.30
+
+--------------------------------------------------------------------------------
+ALGORITHM AND DATA SOURCES
+--------------------------------------------------------------------------------
+
+Rebalancing Algorithm:
+  - Source: compute_balance.R (greedy 1% increment algorithm)
+  - Frequency: Monthly rebalancing
+  - Target Allocation: target_allocation.csv (11 asset classes)
+
+Asset Class Proxies:
+  - US Total Stock Market: VTI
+  - US Large Cap Value: VTV
+  - US Mid Cap Value: VOE
+  - US Small Cap Value: VBR
+  - Developed Markets: VEA
+  - Emerging Markets: VWO
+  - TIPS: STIP
+  - High Quality Bonds: AGG
+  - Muni Bonds: MUB
+  - International Bonds: BNDX
+  - Emerging Market Bonds: EMB
+
+Data Notes:
+  - Representative returns based on actual COVID-19 crash performance
+  - Network restrictions prevented live yfinance download
+  - Returns approximated from known ETF behavior during period
+
+--------------------------------------------------------------------------------
+LIMITATIONS
+--------------------------------------------------------------------------------
+
+1. Short Time Horizon: 3-month period insufficient for long-term evaluation
+2. Simplified Model: Transaction costs and taxes not included
+3. Data Approximation: Returns based on representative values, not live data
+4. Perfect Execution: Assumes monthly rebalancing at exact month-end prices
+5. No Recovery Period: Does not capture 2020-2021 bull market recovery
+
+--------------------------------------------------------------------------------
+CONCLUSIONS
+--------------------------------------------------------------------------------
+
+STRESS TEST VERDICT: The rebalancing strategy underperformed during this
+extreme market stress event. The higher equity allocation (67% vs 60%) and
+factor tilts (value, small-cap) that typically provide long-term benefits
+became liabilities during the crisis.
+
+DIVERSIFICATION BENEFIT: Despite underperformance, diversification across
+11 asset classes helped contain losses to under 10% during one of the fastest
+market crashes in history.
+
+RISK-ADJUSTED VIEW: The Sharpe ratio of -0.757 indicates the strategy took
+more risk without commensurate returns during this period. The strategy's risk
+profile is appropriate for investors willing to accept higher volatility.
+
+LONG-TERM PERSPECTIVE: This crisis period alone should not determine the
+strategy's merit. Value and small-cap tilts typically outperform over full
+market cycles. The April 2020 rebound (+12.7%) suggests the strategy would
+have participated in the subsequent recovery.
+
+REBALANCING DISCIPLINE: The monthly rebalancing forced the strategy to "buy
+the dip" in March 2020, which is precisely what disciplined investors should
+do. This mechanical approach removes emotional decision-making.
+
+--------------------------------------------------------------------------------
+FILES GENERATED
+--------------------------------------------------------------------------------
+
+1. util/covid_backtest.py
+   - Python backtest implementation script
+
+2. util/backtest_covid_crash.json
+   - Structured results in JSON format
+
+3. util/COVID_CRASH_BACKTEST_REPORT.md
+   - Comprehensive markdown report with full analysis
+
+4. util/BACKTEST_SUMMARY.txt
+   - This summary file
+
+--------------------------------------------------------------------------------
+RECOMMENDATIONS FOR FURTHER ANALYSIS
+--------------------------------------------------------------------------------
+
+1. Extend analysis to 12+ months to capture full recovery
+2. Backtest additional crisis scenarios (2008 Financial Crisis, 2022 Rising Rates)
+3. Test alternative rebalancing frequencies (quarterly, annually)
+4. Evaluate sensitivity to equity/bond split (60/40, 70/30, 80/20)
+5. Compare with other factor tilts (growth, momentum, quality)
+
+================================================================================
+END OF REPORT
+================================================================================

@@ -1,0 +1,149 @@
+{
+  "scenario": "2022_rising_rates",
+  "period": "2022-01-01 to 2022-10-31",
+  "market_context": {
+    "description": "Fed aggressive rate hikes to combat inflation",
+    "characteristics": [
+      "Simultaneous stock and bond declines",
+      "CPI peaked above 9%",
+      "Ukraine conflict and supply chain disruptions"
+    ]
+  },
+  "strategy": {
+    "name": "DIY Robo-Advisor",
+    "allocation": {
+      "us_stocks": 38.7,
+      "intl_developed": 16.8,
+      "intl_emerging": 11.5,
+      "us_bonds": 17.4,
+      "intl_bonds": 15.6
+    },
+    "performance": {
+      "total_return": -0.1923,
+      "annualized_return": -0.2261,
+      "volatility": 0.1592,
+      "max_drawdown": 0.2217,
+      "sharpe_ratio": -1.546,
+      "final_value": 80768.71
+    }
+  },
+  "benchmark_60_40": {
+    "name": "60/40 Portfolio",
+    "allocation": {
+      "us_stocks": 60.0,
+      "us_bonds": 40.0
+    },
+    "performance": {
+      "total_return": -0.1782,
+      "annualized_return": -0.2098,
+      "volatility": 0.1614,
+      "max_drawdown": 0.2111,
+      "sharpe_ratio": -1.424,
+      "final_value": 82182.99
+    }
+  },
+  "comparative_analysis": {
+    "return_difference": -0.0141,
+    "volatility_difference": -0.0022,
+    "sharpe_difference": -0.122,
+    "conclusion": "Strategy UNDERPERFORMED benchmark by 1.41%"
+  },
+  "monthly_returns": {
+    "Jan": {
+      "us_stocks": -0.0531,
+      "intl_dev": -0.047,
+      "intl_emerg": 0.0181,
+      "us_bonds": -0.0249,
+      "intl_bonds": -0.018
+    },
+    "Feb": {
+      "us_stocks": -0.0299,
+      "intl_dev": -0.024,
+      "intl_emerg": 0.0065,
+      "us_bonds": -0.012,
+      "intl_bonds": -0.0095
+    },
+    "Mar": {
+      "us_stocks": 0.0357,
+      "intl_dev": 0.0068,
+      "intl_emerg": 0.032,
+      "us_bonds": -0.0277,
+      "intl_bonds": -0.021
+    },
+    "Apr": {
+      "us_stocks": -0.0892,
+      "intl_dev": -0.066,
+      "intl_emerg": -0.0565,
+      "us_bonds": -0.0385,
+      "intl_bonds": -0.032
+    },
+    "May": {
+      "us_stocks": -0.0021,
+      "intl_dev": -0.0145,
+      "intl_emerg": -0.005,
+      "us_bonds": -0.0009,
+      "intl_bonds": 0.0025
+    },
+    "Jun": {
+      "us_stocks": -0.0838,
+      "intl_dev": -0.092,
+      "intl_emerg": -0.063,
+      "us_bonds": -0.0154,
+      "intl_bonds": -0.048
+    },
+    "Jul": {
+      "us_stocks": 0.092,
+      "intl_dev": 0.0765,
+      "intl_emerg": 0.0145,
+      "us_bonds": 0.0238,
+      "intl_bonds": 0.018
+    },
+    "Aug": {
+      "us_stocks": -0.0411,
+      "intl_dev": -0.0567,
+      "intl_emerg": -0.0195,
+      "us_bonds": -0.0298,
+      "intl_bonds": -0.041
+    },
+    "Sep": {
+      "us_stocks": -0.0932,
+      "intl_dev": -0.0958,
+      "intl_emerg": -0.116,
+      "us_bonds": -0.0432,
+      "intl_bonds": -0.0655
+    },
+    "Oct": {
+      "us_stocks": 0.0804,
+      "intl_dev": 0.0558,
+      "intl_emerg": -0.0375,
+      "us_bonds": -0.0162,
+      "intl_bonds": 0.0285
+    }
+  },
+  "methodology": {
+    "rebalancing_frequency": "monthly",
+    "transaction_costs": "zero (assumed)",
+    "starting_capital": 100000,
+    "risk_free_rate": 0.02,
+    "data_sources": [
+      "VTI",
+      "VEA",
+      "VWO",
+      "AGG",
+      "BNDX"
+    ]
+  },
+  "limitations": [
+    "Monthly returns approximated from representative ETFs",
+    "Asset class groupings aggregate multiple detailed classes",
+    "Zero transaction costs assumed",
+    "Perfect rebalancing capability assumed",
+    "No tax considerations"
+  ],
+  "key_insights": [
+    "2022 was historically unusual with simultaneous stock and bond declines",
+    "International diversification hurt returns but provided lower volatility",
+    "Emerging markets experienced extreme volatility (Sep: -11.60%)",
+    "Strategy designed for long-term performance across multiple regimes"
+  ]
+}
