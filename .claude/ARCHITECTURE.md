@@ -9,8 +9,13 @@ diy-robo-advisor/
 ├── compute_balance.R              # Main rebalancing algorithm
 ├── target_allocation.csv          # Target portfolio allocation
 ├── asset_list.csv                 # Investment instruments
+├── data/                          # Position exports (gitignored)
 ├── util/
 │   └── backtest_helper.R          # Performance metrics & simulation functions
+├── output/                        # Generated artifacts (gitignored)
+│   ├── backtests/                 # Backtest results, scripts, data
+│   ├── reports/                   # Analysis summaries
+│   └── README.md                  # Output directory docs
 ├── CLAUDE.md                      # Main project documentation
 ├── BACKTEST_EXAMPLE.md            # Architecture explanation
 ├── DEMO_GUIDE.md                  # Presentation guide

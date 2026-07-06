@@ -50,9 +50,19 @@ Return your analysis as structured data that can be aggregated across scenarios.
 - `compute_balance.R` - The rebalancing algorithm to test
 - `target_allocation.csv` - Target portfolio allocation
 - `asset_list.csv` - Investment instruments with metadata
+- `util/backtest_helper.R` - Helper functions for performance calculations
+
+## Output Location
+
+If you generate intermediate files (scripts, detailed reports), save them to:
+- `output/backtests/` - For backtest artifacts (JSON results, scripts, data files)
+- `output/reports/` - For summary reports or visualizations
+
+These directories are gitignored and safe for temporary outputs.
 
 ## Notes
 
 - For simplicity, you may use representative ETF data even if specific tickers didn't exist during the historical period
 - Document any approximations or data limitations
 - If historical data is unavailable for a scenario, clearly state this and return null metrics
+- Clean up temporary files after returning results (or save to output/ directories)

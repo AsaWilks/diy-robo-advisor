@@ -1,19 +1,32 @@
+# R
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# Logs and data files
 *.lst
 *.log
 *.sas7bdat
 *.xlsx
 *.xls
+
+# IDE
 .idea.*
 .idea/
 venv/*
 .DS_Store
+
+# Position data (contains real account info)
 data/
 /data
 /data/
 *data/
 */data
 */data/
+
+# Workflow outputs (generated artifacts)
+output/backtests/
+output/reports/
+*.pyc
+__pycache__/

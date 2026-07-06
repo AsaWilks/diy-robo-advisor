@@ -11,7 +11,10 @@ asset_list.csv         # Investment instruments with asset classes, expense rati
 target_allocation.csv  # Target allocation percentages by asset class
 data/                  # Brokerage position export CSVs (gitignored)
 util/                  # Helper functions (backtesting utilities)
-.claude/
+output/                # Generated outputs (gitignored)
+  backtests/           # Backtest results, scripts, intermediate data
+  reports/             # Summary reports and visualizations
+.claude/               # Claude Code configuration
   agents/              # Custom agent definitions
   workflows/           # Multi-agent workflow scripts
   skills/              # Invocable review and analysis workflows
@@ -66,3 +69,4 @@ Invoke via `/backtest` skill or directly: `Workflow({ name: 'backtest-strategy' 
 - Target allocations are in `target_allocation.csv` at the repo root
 - Asset metadata (symbols, classes, expense ratios) is in `asset_list.csv`
 - The rebalancing algorithm uses a greedy 1%-increment approach credited to the developer's father
+- Generated outputs (backtest results, reports, temporary files) go in `output/` and are gitignored
