@@ -123,7 +123,7 @@ Scenario Results (ranked by Sharpe):
 2. 2022-rate-hikes:      Sharpe 0.61, Return  6.8%, Drawdown -19.8%
 3. 2008-financial-crisis: Sharpe 0.51, Return  5.7%, Drawdown -19.9%
 
-Interpretation: Strategy held up well in rapid crashes (2020) but 
+Interpretation: Strategy held up well in rapid crashes (2020) but
 struggled in prolonged drawdowns (2008). Consider increasing bond allocation.
 ```
 

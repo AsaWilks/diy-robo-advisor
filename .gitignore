@@ -30,3 +30,6 @@ output/backtests/
 output/reports/
 *.pyc
 __pycache__/
+
+# Ad-hoc analysis (not for git)
+not-for-git/
