@@ -1,105 +1,63 @@
-## compute_balance.R
-## read position summary data
-## compare with specified targets
+# compute_balance.R
+# Payday run: read the latest Schwab positions export, compare sleeves with
+# targets, and print whole-share buy orders for the brokerage cash. Run from
+# the repository root (open the RStudio project, or `Rscript compute_balance.R`).
 
-library(stringr)
-library(tidyverse)
-setwd("C:/Users/awilks/Documents/git_repos/diy-robo-advisor")
+source("R/rebalance.R")
 
+# Settings ---------------------------------------------------------------------
 
-convert_currency <- function(currency) {
-  currency1 <- sub('$','',as.character(currency),fixed=TRUE)
-  currency2 <- as.numeric(gsub('\\,','',as.character(currency1))) 
-  currency2
+# Cash on its way to the brokerage but not yet in the export
+extra_cash <- 0
+
+# Brokerage cash to leave uninvested
+cash_floor <- 0
+
+# Prices for buy funds you don't hold yet (held funds use the export's price)
+prices <- c(VWO = NA_real_)
+
+# Read inputs ------------------------------------------------------------------
+
+if (!file.exists("target_allocation.csv")) {
+  cli_abort("Run this script from the repository root.")
 }
 
+positions_path <- find_latest_positions("data")
+positions <- read_positions(positions_path)
+targets <- read_csv("target_allocation.csv", show_col_types = FALSE)
+assets <- read_csv("asset_list.csv", show_col_types = FALSE)
+lockouts <- read_lockouts("data/wash_sale_lockouts.csv")
 
+# Build and report the plan ----------------------------------------------------
 
-##
-# file names
-##
+plan <- build_buy_plan(
+  positions,
+  targets,
+  assets,
+  extra_cash = extra_cash,
+  cash_floor = cash_floor,
+  lockouts = lockouts,
+  prices = prices[!is.na(prices)]
+)
 
-posit_sum_fn <- "Joint_Tenant-Positions-2024-07-10-124320.csv"
-tgt_alloc_fn <- "target_allocation.csv"
-asset_list_fn <- "asset_list.csv"
-
-##
-# read data
-##
-
-posit_sum <- read_csv(file.path("./data", posit_sum_fn), skip = 2)
-tgt_alloc <- read_csv(file.path(".", tgt_alloc_fn))
-asset_list <- read_csv(file.path(".", asset_list_fn))
-
-##
-# prep balance comp file
-##
-
-actual_alloc_symbols <- posit_sum %>%
-  mutate(market_value = convert_currency(`Mkt Val (Market Value)`)) %>%
-  rename(symbol = Symbol) %>%
-  filter(!`Security Type` %in% c('Cash and Money Market', '--')) %>%
-  full_join(asset_list, by = 'symbol') 
-
-balance_comparison <- actual_alloc_symbols %>%
-  group_by(asset_class_detail) %>%
-  summarize(actual_value = sum(market_value, na.rm = TRUE)) %>%
-  mutate(actual_percent = actual_value / sum(actual_value) * 100) %>%
-  left_join(tgt_alloc, by = 'asset_class_detail') %>%
-  mutate(imbalance = target_percent - actual_percent)
-
-##
-# build_buy_orders.R
-##
-
-new_investment <- 1128
-increment_onepct <- new_investment / 100
-
-# initialize updating variables at current values
-
-balance_update <- balance_comparison %>%
-  mutate(new_value = actual_value,
-         new_imbalance = imbalance)
-
-# allocate new investment - hat tip dad for the algo
-
-for(i in 1:100){
-
-  print(paste("Buy Increment", i))
-
-  balance_update <- balance_update %>%
-  mutate(new_value = if_else(new_imbalance == max(new_imbalance),
-                             new_value + increment_onepct,
-                             new_value),
-         new_percent = new_value / sum(new_value) * 100,
-         new_imbalance = target_percent - new_percent)
+cli_h1("Buy plan from {.file {basename(positions_path)}}")
+cli_text("Investable cash: {.val {round(plan$investable, 2)}}")
+if (length(lockouts) > 0) {
+  cli_text("Locked out today: {.val {lockouts}}")
 }
-##
-# buy orders
-##
+print(plan$orders)
+cli_text("Left uninvested: {.val {round(plan$leftover, 2)}}")
 
-# one row for every asset
-buy_orders_allassets <- balance_update %>%
-  mutate(buy_order = new_value - actual_value) %>%
-  left_join(actual_alloc_symbols, by = 'asset_class_detail') %>%
-  select(buy_order, symbol, asset_class_detail, expense_ratio, class_priority)
+cli_h2("Sleeves before and after")
+print(plan$sleeves)
 
-# subset by highest priorty wtihin asset class
-buy_orders <- buy_orders_allassets %>% 
-  group_by(asset_class_detail) %>%
-    slice_min(class_priority, n = 1)
+if (plan$bond_check$triggered) {
+  cli_alert_warning(c(
+    "Equities are {round(plan$bond_check$equity_shortfall_points, 1)} points ",
+    "below target. Consider selling ",
+    "{.val {round(plan$bond_check$suggested_bond_sale)}} of munis into equities."
+  ))
+}
 
-# print total invested
-print(paste("Total New Investment:",
-            sum(balance_update$new_value) - sum(balance_update$actual_value)))
-
-buy_orders
-      
-      
-
-
-
-
-
-
-
+orders_path <- write_buy_plan(plan)
+cli_alert_success("Saved orders to {.path {orders_path}}")

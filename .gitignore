@@ -28,6 +28,7 @@ data/
 # Workflow outputs (generated artifacts)
 output/backtests/
 output/reports/
+output/orders/
 *.pyc
 __pycache__/
 

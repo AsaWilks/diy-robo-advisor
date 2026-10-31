@@ -1,32 +1,12 @@
-﻿symbol,asset_class_detail,asset_class_broad,description,expense_ratio,class_priority
-VTI,US Total Stock Market,US Stocks,,0.03,1
-SCHB,US Total Stock Market,US Stocks,,0.03,2
-ITOT,US Total Stock Market,US Stocks,,0.03,3
-VTV,US Large Cap Value,US Stocks,,0.04,1
-SCHV,US Large Cap Value,US Stocks,,0.04,2
-SPYV,US Large Cap Value,US Stocks,,0.04,3
-IVE,US Large Cap Value,US Stocks,,0.18,4
-VOE,US Mid Cap Value,US Stocks,,0.05,1
-IWS,US Mid Cap Value,US Stocks,,0.23,2
-IJJ,US Mid Cap Value,US Stocks,,0.18,3
-VBR,US Small Cap Value,US Stocks,,0.07,1
-IWN,US Small Cap Value,US Stocks,,0.24,2
-SLYV,US Small Cap Value,US Stocks,,0.15,3
-VEA,Developed Stock Market,International Stocks,,0.05,1
-SCHF,Developed Stock Market,International Stocks,,0.06,2
-IEFA,Developed Stock Market,International Stocks,,0.07,3
-VWO,Emerging Stock Market,International Stocks,,0.08,1
-IEMG,Emerging Stock Market,International Stocks,,0.09,2
-SPEM,Emerging Stock Market,International Stocks,,0.07,3
-STIP,Inflation Protected Bonds,US Bonds,,0.03,1
-VTIP,Inflation Protected Bonds,US Bonds,,0.04,2
-AGG,High Quality Bonds,US Bonds,,0.03,1
-MUB,Muni Bonds,US Bonds,,0.07,3
-CMF,Muni Bonds,US Bonds,,0.25,2
-TFI,Muni Bonds,US Bonds,,0.23,4
-VTEC,Muni Bonds,US Bonds,,0.08,1
-BNDX,Developed Bond Market,International Bonds,,0.07,1
-IAGG,Developed Bond Market,International Bonds,,0.07,2
-EMB,Emerging Bond Market,International Bonds,,0.39,2
-VWOB,Emerging Bond Market,International Bonds,,0.2,1
-PCY,Emerging Bond Market,International Bonds,,0.5,3
+﻿symbol,sleeve,buy_priority,index_family,note
+VTI,us_stock,1,CRSP US Total Market,Primary
+ITOT,us_stock,2,S&P Total Market,Harvest partner for VTI
+SCHB,us_stock,3,Dow Jones US Broad Stock Market,Second partner
+IVE,us_stock,,S&P 500 Value,Legacy low-basis holding; counts toward sleeve but never bought
+VEA,intl_developed,1,FTSE Developed All Cap ex US,Primary
+SCHF,intl_developed,2,FTSE Developed ex US,Harvest partner for VEA; same index family keeps Korea and Canada treatment consistent
+IQLT,intl_developed,,MSCI World ex USA Sector Neutral Quality,Legacy low-basis holding; counts toward sleeve but never bought
+VWO,intl_emerging,1,FTSE Emerging Markets All Cap,Primary
+SCHE,intl_emerging,2,FTSE Emerging,Harvest partner for VWO
+CMF,ca_muni,1,ICE AMT-Free California Muni,Primary; double tax-exempt for a CA resident
+VTEC,ca_muni,2,S&P California AMT-Free Municipal Bond,Harvest partner for CMF; different index so not substantially identical

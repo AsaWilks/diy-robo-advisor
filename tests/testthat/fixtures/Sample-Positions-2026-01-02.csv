@@ -1,0 +1,9 @@
+"Positions for account Sample ...000 as of 09:00 AM ET, 2026/01/02"
+
+"Symbol","Description","Qty (Quantity)","Price","Price Chng $ (Price Change $)","Price Chng % (Price Change %)","Mkt Val (Market Value)","Day Chng $ (Day Change $)","Day Chng % (Day Change %)","Cost Basis","Gain $ (Gain/Loss $)","Gain % (Gain/Loss %)","Reinvest?","Security Type"
+"VTI","SAMPLE TOTAL MARKET ETF","200","$300.00","$1.00","0.33%","$60,000.00","$200.00","0.33%","$30,000.00","$30,000.00","100%","No","ETFs & Closed End Funds"
+"IVE","SAMPLE VALUE ETF","10","$200.00","-$1.00","-0.5%","$2,000.00","-$10.00","-0.5%","$1,000.00","$1,000.00","100%","No","ETFs & Closed End Funds"
+"IQLT","SAMPLE INTL QUALITY ETF","500","$40.00","-$0.20","-0.5%","$20,000.00","-$100.00","-0.5%","$15,000.00","$5,000.00","33.33%","No","ETFs & Closed End Funds"
+"CMF","SAMPLE CA MUNI ETF","200","$50.00","$0.10","0.2%","$10,000.00","$20.00","0.2%","$10,200.00","($200.00)","-1.96%","No","ETFs & Closed End Funds"
+"Cash & Cash Investments","--","--","--","--","--","$8,000.00","$0.00","0%","--","--","--","--","Cash and Money Market"
+"Positions Total","","--","--","--","--","$100,000.00","$110.00","0.11%","$56,200.00","$35,800.00","63.7%","--","--"

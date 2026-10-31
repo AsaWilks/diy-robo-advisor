@@ -5,13 +5,17 @@ Personal investment portfolio rebalancing tool written in R. Reads brokerage pos
 ## Project Structure
 
 ```
-compute_balance.R      # Main script: reads positions, computes imbalance, generates buy orders
-import_stockdata.R     # Stock data fetching and preprocessing (experimental/ML prep)
-asset_list.csv         # Investment instruments with asset classes, expense ratios, priorities
-target_allocation.csv  # Target allocation percentages by asset class
-data/                  # Brokerage position export CSVs (gitignored)
-util/                  # Helper functions (backtesting utilities)
+compute_balance.R      # Payday run script: settings at top, prints and saves buy orders
+R/rebalance.R          # All rebalancing functions (parse, map, drift, allocate, round)
+tests/                 # testthat suite; run with `Rscript tests/testthat.R`
+  testthat/fixtures/   # Synthetic Schwab export (fake numbers, safe to commit)
+asset_list.csv         # Funds: sleeve, buy_priority (1 = primary, 2 = harvest partner,
+                       #   blank = legacy hold-only), index family
+target_allocation.csv  # Target percentage per sleeve, with asset_type (equity/bond)
+data/                  # Position exports and wash_sale_lockouts.csv (gitignored)
+util/                  # Backtesting helpers and experimental stock data import
 output/                # Generated outputs (gitignored)
+  orders/              # Dated buy-order CSVs from each run
   backtests/           # Backtest results, scripts, intermediate data
   reports/             # Summary reports and visualizations
 .claude/               # Claude Code configuration
@@ -64,9 +68,15 @@ Invoke via `/backtest` skill or directly: `Workflow({ name: 'backtest-strategy' 
 
 ## Conventions
 
-- R code follows the tidyverse style guide (snake_case, `<-` for assignment, `%>%` pipes)
-- Position data files go in `data/` and are not committed to git
+- R code follows the tidyverse style guide (snake_case, `<-` for assignment, base `|>` pipe)
+- Position data files go in `data/` and are not committed to git; the run picks the newest `*Positions*.csv`
 - Target allocations are in `target_allocation.csv` at the repo root
-- Asset metadata (symbols, classes, expense ratios) is in `asset_list.csv`
-- The rebalancing algorithm uses a greedy 1%-increment approach credited to the developer's father
-- Generated outputs (backtest results, reports, temporary files) go in `output/` and are gitignored
+- Asset metadata (symbols, sleeves, buy priorities) is in `asset_list.csv`
+- Every holding must map to a sleeve; an unmapped symbol stops the run rather than silently dropping out of drift
+- Legacy low-basis funds (IQLT, IVE) count toward their sleeve but are never bought; new money goes to the primary fund
+- Wash-sale lockouts: `data/wash_sale_lockouts.csv` (`symbol,locked_until`) switches a sleeve to its harvest partner
+- The rebalancing algorithm is a greedy equal-step approach credited to the developer's father; ties go to one sleeve per step so the total never exceeds the cash
+- Orders are whole shares (Schwab doesn't do fractional ETF shares); funds with no price get dollar-only orders and a warning
+- The bond-sale check is advisory only: it flags when equities are >10 points below target and suggests selling munis down to a $30k floor
+- Tests use a synthetic fixture only; never commit a real export
+- Generated outputs (orders, backtest results, reports) go in `output/` and are gitignored

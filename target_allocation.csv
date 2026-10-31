@@ -1,12 +1,5 @@
-﻿asset_class_detail,asset_class_broad,target_percent
-US Total Stock Market,US Stocks,23.2
-US Large Cap Value,US Stocks,6.2
-US Mid Cap Value,US Stocks,5
-US Small Cap Value,US Stocks,4.3
-Developed Stock Market,International Stocks,16.8
-Emerging Stock Market,International Stocks,11.5
-Inflation Protected Bonds,US Bonds,2.3
-High Quality Bonds,US Bonds,3.2
-Muni Bonds,US Bonds,11.9
-Developed Bond Market,International Bonds,9.8
-Emerging Bond Market,International Bonds,5.8
+﻿sleeve,sleeve_label,asset_type,target_percent
+us_stock,US Total Stock Market,equity,59.5
+intl_developed,International Developed,equity,19
+intl_emerging,Emerging Markets,equity,6.5
+ca_muni,California Municipal Bonds,bond,15
